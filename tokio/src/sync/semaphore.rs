@@ -494,7 +494,7 @@ impl Semaphore {
     ///
     /// [`tokio-console`]: https://github.com/tokio-rs/console
     /// [unstable feature]: crate#unstable-features
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub const fn const_new(permits: usize) -> Self {
         Self {
             ll_sem: ll::Semaphore::const_new(permits),
@@ -513,7 +513,7 @@ impl Semaphore {
     }
 
     /// Creates a new closed semaphore with 0 permits.
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub(crate) const fn const_new_closed() -> Self {
         Self {
             ll_sem: ll::Semaphore::const_new_closed(),

@@ -471,7 +471,7 @@ impl Notify {
     ///
     /// [`tokio-console`]: https://github.com/tokio-rs/console
     /// [unstable feature]: crate#unstable-features
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub const fn const_new() -> Notify {
         Notify {
             state: AtomicUsize::new(0),

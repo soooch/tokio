@@ -343,7 +343,7 @@ impl<T: ?Sized> RwLock<T> {
     ///
     /// [`tokio-console`]: https://github.com/tokio-rs/console
     /// [unstable feature]: crate#unstable-features
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub const fn const_new(value: T) -> RwLock<T>
     where
         T: Sized,
@@ -367,7 +367,7 @@ impl<T: ?Sized> RwLock<T> {
     ///
     /// static LOCK: RwLock<i32> = RwLock::const_with_max_readers(5, 1024);
     /// ```
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub const fn const_with_max_readers(value: T, max_reads: u32) -> RwLock<T>
     where
         T: Sized,

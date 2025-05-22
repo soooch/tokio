@@ -623,7 +623,7 @@ macro_rules! cfg_not_has_atomic_u64 {
 macro_rules! cfg_has_const_mutex_new {
     ($($item:item)*) => {
         $(
-            #[cfg(not(all(loom, test)))]
+            #[cfg(not(loom))]
             $item
         )*
     }
@@ -632,7 +632,7 @@ macro_rules! cfg_has_const_mutex_new {
 macro_rules! cfg_not_has_const_mutex_new {
     ($($item:item)*) => {
         $(
-            #[cfg(all(loom, test))]
+            #[cfg(loom)]
             $item
         )*
     }

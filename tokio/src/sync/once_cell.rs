@@ -164,7 +164,7 @@ impl<T> OnceCell<T> {
     ///
     /// [`tokio-console`]: https://github.com/tokio-rs/console
     /// [unstable feature]: crate#unstable-features
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub const fn const_new() -> Self {
         OnceCell {
             value_set: AtomicBool::new(false),
@@ -219,7 +219,7 @@ impl<T> OnceCell<T> {
     ///
     /// [`tokio-console`]: https://github.com/tokio-rs/console
     /// [unstable feature]: crate#unstable-features
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub const fn const_new_with(value: T) -> Self {
         OnceCell {
             value_set: AtomicBool::new(true),

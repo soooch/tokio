@@ -1,4 +1,4 @@
-#[cfg(all(loom, test))]
+#[cfg(loom)]
 macro_rules! tokio_thread_local {
     ($(#[$attrs:meta])* $vis:vis static $name:ident: $ty:ty = const { $expr:expr } $(;)?) => {
         loom::thread_local! {
@@ -10,7 +10,7 @@ macro_rules! tokio_thread_local {
     ($($tts:tt)+) => { loom::thread_local!{ $($tts)+ } }
 }
 
-#[cfg(not(all(loom, test)))]
+#[cfg(not(loom))]
 macro_rules! tokio_thread_local {
     ($($tts:tt)+) => {
         ::std::thread_local!{ $($tts)+ }

@@ -178,7 +178,7 @@ impl Semaphore {
     /// Creates a new semaphore with the initial number of permits.
     ///
     /// Maximum number of permits on 32-bit platforms is `1<<29`.
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub(crate) const fn const_new(permits: usize) -> Self {
         assert!(permits <= Self::MAX_PERMITS);
 
@@ -207,7 +207,7 @@ impl Semaphore {
     }
 
     /// Creates a new closed semaphore with 0 permits.
-    #[cfg(not(all(loom, test)))]
+    #[cfg(not(loom))]
     pub(crate) const fn const_new_closed() -> Self {
         Self {
             permits: AtomicUsize::new(Self::CLOSED),

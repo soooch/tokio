@@ -3,12 +3,12 @@
 
 #![allow(unused)]
 
-#[cfg(not(all(test, loom)))]
+#[cfg(not(loom))]
 mod std;
-#[cfg(not(all(test, loom)))]
+#[cfg(not(loom))]
 pub(crate) use self::std::*;
 
-#[cfg(all(test, loom))]
+#[cfg(loom)]
 mod mocked;
-#[cfg(all(test, loom))]
+#[cfg(loom)]
 pub(crate) use self::mocked::*;
